@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Admin -->
+    <record id="materials_action" model="ir.actions.act_window">
+        <field name="name">Materials</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">materials.material</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                There's no material over here
+            </p>
+        </field>
+    </record>
+    
+    <!-- Root Element -->
+    <menuitem id="materials_management_root"
+              name="Materials Management"
+              sequence="10"/>
+
+    <!-- Material Root Element -->
+    <menuitem id="materials_root"
+              name="Materials"
+              parent="materials_management_root"
+              sequence="10"/>
+              
+    <!-- Material Route to Material Admin 
+         DEFAULTU URL -->
+    <menuitem id="materials_admin"
+              name="Material Admin"
+              parent="materials_root"
+              action="materials_action"
+              sequence="10"/>
+</odoo>

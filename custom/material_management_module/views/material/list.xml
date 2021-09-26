@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="material_list" name="List of Material">
+        <t t-call="website.layout">
+            <div class="container">
+                <h3 class="mt-3">Material List</h3>
+                <form action="" method="GET" class="mt-2 px-4 py-1 bg-light rounded rounded-3">
+                    <div class="form-group">
+                        <label for="filter_type" class="control-label mt-2">Filter</label>
+                        <select class="form-control" name="filter_type" id="filter_type" onchange="this.form.submit()">
+                            <option t-att-selected="'' == filter_type" value="">Show All Type</option>
+                            <option t-att-selected="'cotton' == filter_type" value="cotton">Cotton</option>
+                            <option t-att-selected="'fabric' == filter_type" value="fabric">Fabric</option>
+                            <option t-att-selected="'jeans' == filter_type" value="jeans">Jeans</option>
+                        </select>
+                    </div>
+                </form>
+                <table class="table my-3">
+                    <thead>
+                        <tr>
+                            <th scope="col">Material Name</th>
+                            <th scope="col">Material Type</th>
+                            <th scope="col">Material Buy Price</th>
+                            <th scope="col">Material Supplier</th>
+                            <th scope="col">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="materials" t-as="material">
+                            <tr>
+                                <td><t t-esc="material['name']"/></td>
+                                <td><t t-esc="material['type'].capitalize()"/></td>
+                                <td>Rp.<t t-esc="material['buy_price']"/></td>
+                                <td><t t-esc="material['supplier_name']"/></td>
+                                <td class="flex">
+                                    <form t-att-action="'/materials/edit/' + str(material['id'])" method="POST" role="form">
+                                        <input type="hidden" name="id" t-att-value="material['id']" />
+                                        <input type="hidden" name="request_type" value="delete" />
+                                        <a class="btn btn-primary" t-att-href="'/materials/edit/' + str(material['id'])">Edit Data</a>
+                                        <input class="btn btn-danger" type="submit" value="Delete Data" />
+                                    </form>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+
+</odoo>

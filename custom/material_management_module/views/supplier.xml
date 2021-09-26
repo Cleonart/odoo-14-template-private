@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="supplier_action" model="ir.actions.act_window">
+        <field name="name">Supplier</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">materials.supplier</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                There's no supplier over here
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="suppliers_root"
+              name="Supplier"
+              parent="materials_management_root"
+              action="supplier_action"
+              sequence="10"/>
+
+</odoo>

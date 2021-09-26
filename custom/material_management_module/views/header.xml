@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="theme_gourmand_nav" name="Custom Header" inherit_id="website.layout">
+        <xpath expr="//div[@id='wrapwrap']/header" position="replace">
+            <header t-att-class=" 'editable_mode' if editable else '' ">
+                <nav class="navbar navbar-default navbar-light bg-light" role="navigation">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a href="/">Materials List</a>
+                            <a class="ml-3" href="/materials/new">New Material</a>
+                        </div>
+                        <a class="navbar-brand" href="/" t-field="res_company.name" />
+                    </div>
+                </nav>
+            </header>
+        </xpath>
+    </template>
+</odoo>

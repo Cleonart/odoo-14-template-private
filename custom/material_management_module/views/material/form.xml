@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="material_form" name="Material Form">
+        <t t-call="website.layout">
+            <div class="container mt-4">
+                <t t-if="len(error) > 0">
+                    <div class="pl-3 py-2 bg-light">
+                        <h4 class="fw-bold">Dialog!</h4>
+                        <t t-foreach="error" t-as="variable">
+                            <p class="mb-1">
+                                <t t-esc="variable['msg']"/>
+                            </p>
+                        </t>
+                    </div>
+                </t>
+
+                <!-- Actions Button -->
+                <t t-if="material['id'] != ''">
+                    <div class="d-flex">
+                        <!-- Delete Button Actions -->
+                        <form role="form" action="" method="POST" class="my-2">
+                            <input type="hidden" name="id" t-att-value="material['id']" />
+                            <input type="submit" class="btn btn-danger" value="Delete Data"/>
+                            <input type="hidden" name="request_type" value="delete" />
+                        </form>
+                        <a class="ml-2 btn btn-info my-2" href="/materials/new">New Material</a>
+                    </div>
+                </t>
+
+                <!-- Add and Update Actions-->
+                <form role="form" action="" method="POST" class="my-4">
+                    <input type="hidden" name="redirect_to" value="/materials/new" />
+                    <input type="hidden" name="id" t-att-value="material['id']" />
+                    <input type="hidden" name="request_type" value="mutate" />
+                    <div class="form-group">
+                        <label for="name" class="control-label">Material Name</label>
+                        <input type="text" name="name" id="name" t-att-value="material['name']" 
+                                class="form-control" required="required" placeholder="Enter Material Name Here"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="type" class="control-label">Material Type</label>
+                        <select name="type" id="type" class="form-control" t-att-value="material['type']">
+                            <option selected="false" value="">Choose Material Type Here</option>
+                            <option t-att-selected="material['type'] == 'cotton'" value="cotton">Cotton</option>
+                            <option t-att-selected="material['type'] == 'fabric'" value="fabric">Fabric</option>
+                            <option t-att-selected="material['type'] == 'jeans'" value="jeans">Jeans</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="control-label">Material Buy Price</label>
+                        <input type="number" name="buy_price" id="buy_price" t-att-value="material['buy_price']" 
+                                class="form-control" required="required" placeholder="Enter Buy Price Here"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="supplier" class="control-label">Pick Supplier</label>
+                        <select name="supplier" id="supplier" class="form-control" t-att-value="material['supplier']">
+                            <option selected="true" value="">Choose Supplier Here</option>
+                            <t t-foreach="supplier" t-as="sup">
+                                <option t-att-selected="material['supplier'] == sup.id" t-att-value="sup.id">
+                                    <t t-esc="sup.name"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Submit"/>
+                </form>
+            </div>
+        </t>
+    </template>
+
+</odoo>

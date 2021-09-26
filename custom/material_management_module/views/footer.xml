@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="theme_custom_automatic_footer" name="My Custom Footer" inherit_id="website.layout">
+        <xpath expr="//div[@id='wrapwrap']/footer" position="replace">
+            <footer t-att-class=" 'editable_mode' if editable else '' ">
+                <div class="bg-dark mt-2">
+                    <div class="container py-4">
+                        <p class="mb-0">@kedatech Material Data</p>
+                    </div>
+                </div>
+            </footer>
+        </xpath>
+    </template>
+
+</odoo>
